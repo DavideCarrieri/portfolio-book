@@ -1,6 +1,6 @@
 ---
 title: "Chapter 1 · My EDA project"
-author: "Your Name"
+author: "Davide Carrieri"
 date: today
 ---
 
@@ -43,6 +43,7 @@ use the one that fits your portal:
 #| message: false
 # Load what you use. {rdatagouv} only if you're on data.gouv.fr and want it.
 # library(rdatagouv)    # search / download datasets from data.gouv.fr
+library(dslabs)
 library(janitor)        # clean column names, tabulate with tabyl()
 library(naniar)         # visualise missing values
 library(skimr)          # one-line data summary with skim()
@@ -57,6 +58,9 @@ library(skimr)          # one-line data summary with skim()
 # Option B — any portal by direct URL:
 # url <- "https://www.example-portal.org/.../my-data.csv"
 # download.file(url, "data/my-data.csv")
+data <- dslabs::olive
+summary(data)
+str(data)
 ```
 
 > **Optionally pin the fetched copy** with `{pins}` so the chapter reads from a
@@ -64,24 +68,34 @@ library(skimr)          # one-line data summary with skim()
 >
 > ```r
 > board <- pins::board_folder("pins/", versioned = TRUE)
-> pins::pin_write(board, dat, "my-data", type = "csv")
+> pins::pin_write(board, data, "my-data", type = "csv")
 > dat    <- pins::pin_read(board, "my-data")
 > ```
+```r
+levels(data$area)
+data$region <- setNames(as.numeric(data$region), as.character(data$region))
 
+data$area<- setNames(as.numeric(data$region), as.character(data$region))
+str(data)
 
+```
+
+```{r}
+(levels(data$area))
+```
 ## A first look
 
 ```{r}
 #| label: skim
 #| fig-cap: "A one-line summary of the dataset."
 # The skim() output gives you type, missingness and distributions at a glance.
-# skim(dat)
+skim(data)
 ```
 
 ```{r}
 #| label: missingness
 #| fig-cap: "Missing values across variables."
-# vis_miss(dat) — where is data missing, and why might that be?
+ vis_miss(data) #— where is data missing, and why might that be?
 ```
 
 ## Cleaning decisions {#sec-cleaning}
