@@ -73,11 +73,9 @@ skim(data)
  vis_miss(data) #— where is data missing, and why might that be?
 ```
 
-## Cleaning decisions {#sec-cleaning}
+## Cleaning decisions
 
-<!-- TODO: document the decisions you made while cleaning the data. What did you
-rename, recode, or drop, and why? A defensible cleaning decision is a feature
-of a good analysis, not an afterthought. -->
+Since there are 0 missing values, the choice is to the preserve all data, as they are all part of our object of studies.
 
 ## Plotting the story
 
@@ -93,6 +91,7 @@ it in the text (e.g. "Fig. 1 shows that …"). If a figure uses randomness
 #| fig-width: 10
 #| fig-height: 18
 #| warning: false
+#| echo: false
 
 library(tidyverse)
 
@@ -117,6 +116,7 @@ data %>%
 ```{r}
 #| label: fig-heatmap-acids
 #| fig-cap: "Chemical profile by area (normalized values compared to the mean of each acid)."
+#| echo: false
 
 data %>%
   # 1. Calculate the mean of all acids grouped by area
