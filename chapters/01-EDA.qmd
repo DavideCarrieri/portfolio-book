@@ -96,18 +96,21 @@ it in the text (e.g. "Fig. 1 shows that …"). If a figure uses randomness
 library(tidyverse)
 
 data %>%
-  # Select all acid columns (from palmitic to eicosenoic) and reshape to long format
   pivot_longer(cols = palmitic:eicosenoic, 
                names_to = "acid", 
                values_to = "percentage") %>%
   ggplot(aes(x = area, y = percentage, fill = area)) +
   geom_boxplot(alpha = 0.7, outlier.size = 0.5) +
-  # Create a separate panel for each acid, allowing independent Y axes
   facet_wrap(~ acid, scales = "free_y", ncol = 2) +
+  scale_x_discrete(sec.axis = dup_axis(name = NULL)) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
-        legend.position = "none",
-        strip.text = element_text(face = "bold", size = 10)) +
+  theme(
+    
+    axis.text.x.bottom = element_text(angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.x.top = element_text(angle = 90, hjust = 0, vjust = 0.5),
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12)
+  ) +
   labs(x = NULL, y = "Concentration (%)")
 ```
 
