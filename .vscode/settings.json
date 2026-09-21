@@ -1,0 +1,11 @@
+{
+  "positron.r.customBinaries": [
+    "/home/ensai/.uvr/r-versions/4.6.1/bin/R"
+  ],
+  "positron.r.customRootFolders": [
+    "/home/ensai/.uvr/r-versions"
+  ],
+  "positron.r.interpreters.default": "/home/ensai/.uvr/r-versions/4.6.1/bin/R",
+  "r.rpath.linux": "/home/ensai/.uvr/r-versions/4.6.1/bin/R",
+  "r.rterm.linux": "/home/ensai/.uvr/r-versions/4.6.1/bin/R"
+}
